@@ -30,14 +30,20 @@ while True:
         #find task with inputted id
         for task_to_update in tasks:
             if task_to_update["id"] == id_to_update:
+                update_choice = input("Description:1\nStatus:2\nChoose attribute to update: ")
+                #update description
+                if update_choice == "1":
+                    new_description = input("Enter new description: ")
+                    task_to_update["description"] = new_description
                 #update status
-                new_status = input("1:To-Do\n2:In-Progress\n3:Completed\nChoose new status: ")
-                if new_status == "1":
-                    task_to_update["status"] = "To-Do"
-                if new_status == "2":
-                    task_to_update["status"] = "In-Progress"
-                if new_status == "3":
-                    task_to_update["status"] = "Completed"
+                elif update_choice == "2":
+                    new_status = input("1:To-Do\n2:In-Progress\n3:Completed\nChoose new status: ")
+                    if new_status == "1":
+                        task_to_update["status"] = "To-Do"
+                    elif new_status == "2":
+                        task_to_update["status"] = "In-Progress"
+                    elif new_status == "3":
+                        task_to_update["status"] = "Completed"
 
     if command == "4": #clear
         tasks = []
