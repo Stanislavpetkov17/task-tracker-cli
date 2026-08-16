@@ -78,8 +78,30 @@ while True:
         tasks = []
 
     if command == "5": #list
-        print()
-        print(tasks)
+        status_to_list = input("List all:1\nList to-do:2\nList In-Progress:3\nList Completed:4\nChoose an action: ")
+        found_task_ls = False
+        if status_to_list in ["1", "2", "3", "4"]:
+            for task_to_list in tasks:
+                if status_to_list == "1":
+                    print(task_to_list)
+                    found_task_ls = True
+                elif status_to_list == "2":
+                    if task_to_list["status"] == "To-Do":
+                        print(task_to_list)
+                        found_task_ls = True
+                elif status_to_list == "3":
+                    if task_to_list["status"] == "In-Progress":
+                        print(task_to_list)
+                        found_task_ls = True
+                elif status_to_list == "4":
+                    if task_to_list["status"] == "Completed":
+                        print(task_to_list)
+                        found_task_ls = True
+            if found_task_ls == False:
+                print("\nNo tasks found")
+        else:
+            print("\nPlease enter a valid option")
+
     if command == "6": #exit
         break
 
