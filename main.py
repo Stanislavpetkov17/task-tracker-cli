@@ -1,4 +1,5 @@
 import json
+import datetime
 
 #open json
 with open("tasks.json", "r") as file:
@@ -21,6 +22,7 @@ while True:
 
         task["id"] = new_id            #add ID
         task["status"] = "To-Do"       #add status
+        task["createdAt"] = datetime.datetime.now().strftime("%x-%H:%M") 
         tasks.append(task)             #append new task to list
 
     #update task
@@ -41,15 +43,19 @@ while True:
                     if update_choice == "1":
                         new_description = input("Enter new description: ")
                         task_to_update["description"] = new_description
+                        task_to_update["updatedAt"] = datetime.datetime.now().strftime("%x-%H:%M")
                     #update status
                     elif update_choice == "2":
                         new_status = input("1:To-Do\n2:In-Progress\n3:Completed\nChoose new status: ")
                         if new_status == "1":
                             task_to_update["status"] = "To-Do"
+                            task_to_update["updatedAt"] = datetime.datetime.now().strftime("%x-%H:%M")
                         elif new_status == "2":
                             task_to_update["status"] = "In-Progress"
+                            task_to_update["updatedAt"] = datetime.datetime.now().strftime("%x-%H:%M")
                         elif new_status == "3":
                             task_to_update["status"] = "Completed"
+                            task_to_update["updatedAt"] = datetime.datetime.now().strftime("%x-%H:%M")                
                         else:
                             print("Please enter a valid status")
                     else:
@@ -78,7 +84,7 @@ while True:
         tasks = []
 
     if command == "5": #list
-        status_to_list = input("List all:1\nList to-do:2\nList In-Progress:3\nList Completed:4\nChoose an action: ")
+        status_to_list = input("List all:1\nList To-Do:2\nList In-Progress:3\nList Completed:4\nChoose an action: ")
         found_task_ls = False
         if status_to_list in ["1", "2", "3", "4"]:
             for task_to_list in tasks:
