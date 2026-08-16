@@ -57,6 +57,22 @@ while True:
             if found_task == False:
                 print("\nPlease enter a valid ID")
 
+    #delete task
+    if command == "3":
+        try:
+            id_to_delete = int(input("Enter task ID: "))
+        except ValueError:
+                    print("\nPlease enter a valid ID")
+        else:
+            found_value_del = False
+            #find task with inputted id
+            for task_to_delete in tasks:
+                if task_to_delete["id"] == id_to_delete:
+                    found_value_del = True
+                    tasks.remove(task_to_delete)
+                    break
+            if found_value_del == False:
+                print("\nPlease enter a valid ID")
 
     if command == "4": #clear
         tasks = []
